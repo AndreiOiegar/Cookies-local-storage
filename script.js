@@ -2,26 +2,35 @@ function getCookiesAsObject() {
     let cookiesArray = document.cookie.split("; ");
     let cookieObject = {};
 
-    cookiesArray.forEach(element => {
+    cookiesArray.forEach((element) => {
         let cookieData = element.split("=");
         cookieObject[cookieData[0]] = cookieData[1];
     })
     return cookieObject;
 }
 
-const cookieObject = getCookiesAsObject();
+document.cookie = "_name=Andrei Oiegar; expires=Mon, 25 May 2020 12:00:00 UTC; path=/";
 
-const radioBtns = document.getElementsByName("language");
+function cookiesSetting(){
+    const cookieObject = getCookiesAsObject();
 
-console.log(radioBtns);
+    const radioBtns = document.getElementsByName("language");
 
 
-for(let i = 0; i < radioBtns.length; i++){
-    if(radioBtns[i].value === cookieObject.language){
-        radioBtns[i].checked = "checked";
-    }
+    console.log(radioBtns);
 
-    radioBtns[i].addEventListener("click", (event) => {
-        document.cookie = `language=${event.target.value}`
+
+    for(let i = 0; i < radioBtns.length; i++){
+        if(radioBtns[i].value === cookieObject.language){
+            radioBtns[i].checked = "checked";
+        }
+
+        radioBtns[i].addEventListener("click", (event) => {
+            document.cookie = `language=${event.target.value}`
+        })
     }
 }
+cookiesSetting();
+// console.log(document.cookie)
+
+
