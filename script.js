@@ -1,3 +1,5 @@
+//Cookies
+
 function getCookiesAsObject() {
     let cookiesArray = document.cookie.split("; ");
     let cookieObject = {};
@@ -31,6 +33,29 @@ function cookiesSetting(){
     }
 }
 cookiesSetting();
-// console.log(document.cookie)
+console.log(document.cookie)
 
 
+
+//Local Storage
+
+function localStorageSetting(){
+    const genderBtns = document.getElementsByName('gender');
+
+    for(let i = 0; i < genderBtns.length; i++){
+        if(typeof(Storage) !== 'undefined'){
+            let gender = localStorage.getItem('gender');
+
+            if(genderBtns[i].value === gender){
+                genderBtns[i].checked = 'checked';
+            }
+        }
+
+        genderBtns[i].addEventListener('click', (event) =>{
+            localStorage.setItem('gender', event.target.value);
+        })
+    }
+}
+
+localStorageSetting();
+console.log(localStorage)
